@@ -3,7 +3,7 @@
 
 # Add our dependencies.
 import csv
-from distutils import text_file
+
 import os
 
 # Add a variable to load a file from a path.
@@ -31,7 +31,7 @@ winning_percentage = 0
 # 2: Track the largest county and county voter turnout.
 
 largest_county_turnout = ""
-voter_turnout = 0 
+largest_county_vote = 0
 
 # Read the csv and convert it into a list of dictionaries
 with open(file_to_load) as election_data:
@@ -63,7 +63,7 @@ with open(file_to_load) as election_data:
             candidate_votes[candidate_name] = 0
 
         # Add a vote to that candidate's count
-            candidate_votes[candidate_name] += 1
+        candidate_votes[candidate_name] += 1
 
         # 4a: Write an if statement that checks that the
         # county does not match any existing county in the county list.
@@ -76,7 +76,7 @@ with open(file_to_load) as election_data:
             county_votes[county_name]   = 0
 
         # 5: Add a vote to that county's vote count.
-            county_votes[county_name] += 1
+        county_votes[county_name] += 1
 
 
 # Save the results to our text file.
@@ -102,7 +102,7 @@ with open(file_to_save, "w") as txt_file:
 
          # 6d: Print the county results to the terminal.
         #ccounty_percent = 
-        county_results = (f"{county}: {county_percent:.1f}% ({county_vote:,}\n")
+        county_results = (f"{county}: {county_percent:.1f}% ({county_vote:,})\n")
         print(county_results, end="")
         
 
@@ -115,7 +115,8 @@ with open(file_to_save, "w") as txt_file:
             largest_county_turnout = county
     
     # 7: Print the county with the largest turnout to the terminal.
-    print(largest_county_vote)
+    largest_county_turnout = (f'''\n-------------------------\nLargest County Turnout: {largest_county_turnout}\n-------------------------\n''')
+    print(largest_county_turnout)
 
     # 8: Save the county with the largest turnout to a text file.
     txt_file.write(largest_county_turnout)
@@ -127,7 +128,7 @@ with open(file_to_save, "w") as txt_file:
         votes = candidate_votes.get(candidate_name)
         vote_percentage = float(votes) / float(total_votes) * 100
         candidate_results = (
-            f"{candidate_name}: {vote_percentage:.1f}% ({votes:,})\n")
+        f"{candidate_name}: {vote_percentage:.1f}% ({votes:,})\n")
 
         # Print each candidate's voter count and percentage to the
         # terminal.
