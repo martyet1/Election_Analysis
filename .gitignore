@@ -6,6 +6,7 @@ __pycache__/
 # Personal files
 .DS_Store
 
+
 # C extensions
 *.so
 
